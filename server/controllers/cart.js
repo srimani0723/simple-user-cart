@@ -50,7 +50,9 @@ export const getCart = async (req, res) => {
       return res.status(404).json({ message: "Cart not found" });
     }
 
-    const cartItems = await CartItem.find({ cart_id: cart._id });
+    const cartItems = await CartItem.find({ cart_id: cart._id }).populate(
+      "item_id",
+    );
 
     res.status(200).json({ cartItems });
   } catch (error) {

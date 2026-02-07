@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import allStates from "./allStates";
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    allStates: allStates.reducer,
+  },
 });
 
 export default store;
