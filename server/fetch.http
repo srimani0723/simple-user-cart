@@ -1,0 +1,66 @@
+###
+GET http://localhost:5000/
+
+###
+POST http://localhost:5000/api/users/
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "test123"
+}
+
+###
+POST http://localhost:5000/api/users/login
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "test123"
+}
+
+
+###
+POST http://localhost:5000/api/users/logout
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjY5ODZkYTVkZjVhMWMwZDZiODI3ODc1YyIsInVzZXJuYW1lIjoidGVzdCIsInBhc3N3b3JkIjoidGVzdDEyMyJ9LCJpYXQiOjE3NzA0NDU2ODUsImV4cCI6MTc3MDUzMjA4NX0.eB4-2e84NFBAUww2nD4jpFcv91isJGvEcxgqiLR9Mho
+
+###
+POST http://localhost:5000/api/items
+Content-Type: application/json
+
+{
+  "name": "mobile",
+  "price": 250
+}
+
+###
+GET http://localhost:5000/api/items
+
+###
+GET http://localhost:5000/api/carts
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjY5ODZkYTVkZjVhMWMwZDZiODI3ODc1YyIsInVzZXJuYW1lIjoidGVzdCIsInBhc3N3b3JkIjoidGVzdDEyMyJ9LCJpYXQiOjE3NzA0NDU2ODUsImV4cCI6MTc3MDUzMjA4NX0.eB4-2e84NFBAUww2nD4jpFcv91isJGvEcxgqiLR9Mho
+
+###
+POST http://localhost:5000/api/carts
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjY5ODZkYTVkZjVhMWMwZDZiODI3ODc1YyIsInVzZXJuYW1lIjoidGVzdCIsInBhc3N3b3JkIjoidGVzdDEyMyJ9LCJpYXQiOjE3NzA0NDU2ODUsImV4cCI6MTc3MDUzMjA4NX0.eB4-2e84NFBAUww2nD4jpFcv91isJGvEcxgqiLR9Mho
+
+{
+    "name":"test",
+    "item": "6986dd5a59d820644c5e20f9"
+}
+
+###
+GET http://localhost:5000/api/orders
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjY5ODZkYTVkZjVhMWMwZDZiODI3ODc1YyIsInVzZXJuYW1lIjoidGVzdCIsInBhc3N3b3JkIjoidGVzdDEyMyJ9LCJpYXQiOjE3NzA0NDU2ODUsImV4cCI6MTc3MDUzMjA4NX0.eB4-2e84NFBAUww2nD4jpFcv91isJGvEcxgqiLR9Mho
+
+###
+POST http://localhost:5000/api/orders
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjY5ODZkYTVkZjVhMWMwZDZiODI3ODc1YyIsInVzZXJuYW1lIjoidGVzdCIsInBhc3N3b3JkIjoidGVzdDEyMyJ9LCJpYXQiOjE3NzA0NDU2ODUsImV4cCI6MTc3MDUzMjA4NX0.eB4-2e84NFBAUww2nD4jpFcv91isJGvEcxgqiLR9Mho
+
+{
+    "cart_id":"6986ded83f19c1b837f05edd"
+}
