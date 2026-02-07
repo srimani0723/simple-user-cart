@@ -36,7 +36,8 @@ const allStates = createSlice({
   initialState: {
     username: "",
     password: "",
-    activePage: validateActivePage(window.location.pathname).name,
+    activePage:
+      validateActivePage(window.location.pathname)?.name || "NotFound",
   },
   reducers: {
     setUsername: (state, action) => {
