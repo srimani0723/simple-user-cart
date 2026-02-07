@@ -36,7 +36,13 @@ const useFetch = ({
   const mutation = useMutation({
     mutationFn: (newData) => fetchData({ url, method, data: newData, headers }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [url] });
+      queryClient.invalidateQueries({
+        predicate: (query) => {
+          const keyString = query.queryKey[0]?.toString();
+          const match = keyString?.includes("/api/carts");
+          return match;
+        },
+      });
     },
   });
 

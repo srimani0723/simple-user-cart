@@ -4,7 +4,40 @@ import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import { ShoppingCart } from "lucide-react";
 
+const COLORS = [
+  "bg-red-400",
+  "bg-green-400",
+  "bg-blue-400",
+  "bg-yellow-400",
+  "bg-purple-400",
+  "bg-pink-400",
+  "bg-orange-400",
+  "bg-teal-400",
+  "bg-indigo-400",
+  "bg-violet-400",
+  "bg-cyan-400",
+  "bg-lime-400",
+  "bg-rose-400",
+  "bg-fuchsia-400",
+  "bg-emerald-400",
+  "bg-sky-400",
+  "bg-amber-400",
+  "bg-slate-400",
+  "bg-stone-400",
+  "bg-neutral-400",
+];
+
+const getColor = (id) => {
+  let hash = 0;
+  for (let i = 0; i < id.length; i++) {
+    hash = id.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const index = Math.abs(hash % COLORS.length);
+  return COLORS[index];
+};
+
 const Cart = () => {
+  const queryClient = useQueryClient();
   const { query } = useFetch({
     url: "/api/carts",
     method: "GET",
@@ -37,38 +70,18 @@ const Cart = () => {
       {},
       {
         onSuccess: (e) => {
+          queryClient.invalidateQueries({ queryKey: ["orders"] });
+          queryClient.invalidateQueries({ queryKey: ["carts"] });
           toast.success(e.data.message);
-          useQueryClient.invalidateQueries({ queryKey: ["orders", "carts"] });
         },
         onError: (e) => {
-          toast.error(e.response.data.message);
+          const errorMessage =
+            e.response?.data?.message || e.message || "An error occurred";
+          toast.error(errorMessage);
         },
       },
     );
   };
-
-  const colors = [
-    "bg-red-400",
-    "bg-green-400",
-    "bg-blue-400",
-    "bg-yellow-400",
-    "bg-purple-400",
-    "bg-pink-400",
-    "bg-orange-400",
-    "bg-teal-400",
-    "bg-indigo-400",
-    "bg-violet-400",
-    "bg-cyan-400",
-    "bg-lime-400",
-    "bg-rose-400",
-    "bg-fuchsia-400",
-    "bg-emerald-400",
-    "bg-sky-400",
-    "bg-amber-400",
-    "bg-slate-400",
-    "bg-stone-400",
-    "bg-neutral-400",
-  ];
 
   return (
     <div className="flex flex-col gap-4 p-4">
@@ -87,7 +100,7 @@ const Cart = () => {
                   className="flex items-center justify-start gap-4 bg-gray-300 p-3 rounded-3xl border-2 border-gray-400"
                 >
                   <div
-                    className={`flex items-center justify-center ${colors[Math.floor(Math.random() * colors.length)]} h-30 w-30 rounded-2xl`}
+                    className={`flex items-center justify-center ${getColor(item._id)} h-30 w-30 rounded-2xl`}
                   ></div>
                   <div className="flex flex-col">
                     <h1 className="text-md font-semibold">

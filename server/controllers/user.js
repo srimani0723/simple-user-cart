@@ -49,8 +49,8 @@ export const loginUser = async (req, res) => {
     }
 
     if (user.token) {
-      return res.status(200).json({
-        message: "User is already logged in on another device",
+      return res.status(400).json({
+        message: "already logged in",
       });
     }
 
